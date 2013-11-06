@@ -19,7 +19,7 @@ namespace ALCT.Models
         public DbSet<EstadoModel> Estados { get; set; }
         public DbSet<CidadeModel> Cidades { get; set; }
         public DbSet<ImovelModel> Imoveis { get; set; }
-
+        public DbSet<ParedeModel> Paredes { get; set; }
         public DbSet<ImagemModel> ImagemModels { get; set; }
     }
 }

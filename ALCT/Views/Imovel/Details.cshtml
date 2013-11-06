@@ -92,6 +92,19 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Planta.Caminho)
     </div>
+
+    @foreach (ALCT.Models.ParedeModel parede in Model.Paredes)
+    {
+        <br />
+        @parede.X
+        <br />
+        @parede.Z
+        <br />
+        @parede.Width
+        <br />
+        @parede.Depth
+        <br />
+    } 
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.ImovelId }) |

@@ -48,7 +48,13 @@ namespace ALCT.Controllers
         [HttpPost]
         public JsonResult Paredes(ImovelModel imovelmodel)
         {
-            return Json(new { Success = 0, ex = "Erro" });
+            foreach (ParedeModel parede in imovelmodel.Paredes)
+            {
+                parede.ImovelID = imovelmodel.ImovelId;
+                db.Paredes.Add(parede);
+            }
+            db.SaveChanges();
+            return Json(new { Success = 1, ex = "OK" });
         }
 
         //

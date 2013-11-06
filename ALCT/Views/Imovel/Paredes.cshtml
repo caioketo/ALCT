@@ -131,7 +131,7 @@
 
     function postParedes() {
         var imovel = { "ImovelId": "", "Paredes": [] };
-        imovel.ImovelId = {@Model.ImovelId};
+        imovel.ImovelId = @Model.ImovelId;
         imovel.Paredes = rects;
         $.ajax({
             url: '/Imovel/Paredes',
