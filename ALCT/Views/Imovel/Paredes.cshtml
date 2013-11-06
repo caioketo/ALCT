@@ -1,0 +1,152 @@
+﻿@model ALCT.Models.ImovelModel
+
+@{
+    ViewBag.Title = "Paredes";
+}
+
+<h2>Paredes</h2>
+
+    <canvas id="canvas"></canvas>
+    <ul id="lista">
+
+    </ul>
+
+    <input type="button" id="btnConfirma" onclick="postParedes();" />
+
+<script>
+    roomWall = function (width, depth, x, z) {
+        this.width = width;
+        this.depth = depth;
+        this.x = x;
+        this.z = z;
+    }
+
+    var id = 0;
+    var curRect = null;
+    var rects = [];
+    var canvas = document.getElementById("canvas");
+    var ul = document.getElementById("lista");
+    context = canvas.getContext("2d");
+    canvas.addEventListener("click", onClickCanvas, false);
+    canvas.onmousemove = mouseMove;
+    var imageObj = new Image();
+    imageObj.onload = function () {
+        canvas.width = imageObj.width;
+        canvas.height = imageObj.height;
+        context.drawImage(imageObj, 0, 0);
+        drawRects();
+    };
+    imageObj.src = '../../Images/@Model.Planta.Caminho';
+
+    function getMouseLocation(e) {
+        var x;
+        var y;
+        if (e.pageX || e.pageY) {
+            x = e.pageX;
+            y = e.pageY;
+        }
+        else {
+            x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+        x -= canvas.offsetLeft;
+        y -= canvas.offsetTop;
+        return { x: x, y: y };
+    }
+
+    function mouseMove(e) {
+        if (curRect == null) {
+            return;
+        }
+        var mouse = getMouseLocation(e);
+        curRect.Width = mouse.x - curRect.X;
+        curRect.Depth = mouse.y - curRect.Z;
+    };
+
+    function onClickCanvas(e) {
+        var mouse = getMouseLocation(e);
+        if (curRect == null) {
+            curRect = {
+                X: mouse.x,
+                Z: mouse.y,
+                Width: 0,
+                Depth: 0,
+                desc: "",
+                id: id,
+                sel: false
+            };
+            id++;
+        }
+        else {
+            //var paredeDesc = prompt("Digite uma descrição para a parede:", "Parede 1");
+            //curRect.desc = paredeDesc;
+            rects.push(curRect);
+            var li = document.createElement("li");
+            li.innerHTML = curRect.desc;
+            var recId = curRect.id;
+            li.onclick = (function () {
+                var currentI = recId;
+                return function () {
+                    clickItem(currentI);
+                }
+            })();
+            ul.appendChild(li);
+            curRect = null;
+        }
+    };
+
+    function clickItem(id) {
+        for (var i = 0; i < rects.length; i++) {
+            rects[i].sel = false;
+            if (rects[i].id == id) {
+                rects[i].sel = true;
+            }
+        }
+    }
+
+    function drawRects() {
+        requestAnimationFrame(drawRects);
+        canvas.width = canvas.width;
+        context.drawImage(imageObj, 0, 0);
+        for (var i = 0; i < rects.length; i++) {
+            drawRect(rects[i]);
+        }
+        if (curRect != null) {
+            drawRect(curRect);
+        }
+    };
+
+    function drawRect(rect) {
+        context.beginPath();
+        context.rect(rect.X, rect.Z, rect.Width, rect.Depth);
+        context.lineWidth = 2;
+        if (rect.sel) {
+            context.strokeStyle = 'red';
+        }
+        else {
+            context.strokeStyle = 'yellow';
+        }
+        context.stroke();
+    };
+
+    function postParedes() {
+        var imovel = { "ImovelId": "", "Paredes": [] };
+        imovel.ImovelId = {@Model.ImovelId};
+        imovel.Paredes = rects;
+        $.ajax({
+            url: '/Imovel/Paredes',
+            data: JSON.stringify(imovel),
+            type: 'POST',
+            contentType: 'application/json;',
+            dataType: 'json',
+            success: function (result) {
+                if (result.Success == "1") {
+                    window.location.href = "/Imovel/index";
+                }
+                else {
+                    alert(result.ex);
+                }
+            }
+        });
+    }
+</script>

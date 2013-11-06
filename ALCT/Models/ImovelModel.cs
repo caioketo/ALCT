@@ -28,11 +28,19 @@ namespace ALCT.Models
         public int? CidadeID { get; set; }
         public virtual CidadeModel Cidade { get; set; }
 
+        [ForeignKey("Planta")]
+        [Column(Order = 3)]
+        public int? ImagemID { get; set; }
+        public virtual ImagemModel Planta { get; set; }
+
+
+        public virtual List<ImagemModel> Fotos { get; set; }
         public virtual List<ParedeModel> Paredes { get; set; }
 
         public ImovelModel()
         {
             Paredes = new List<ParedeModel>();
+            Fotos = new List<ImagemModel>();
         }
     }
 }

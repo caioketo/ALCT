@@ -102,6 +102,14 @@
             @Html.ValidationMessageFor(model => model.CidadeID)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImagemID, "Planta")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ImagemID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ImagemID)
+        </div>
+
         <p>
             <input type="submit" value="Save" />
         </p>

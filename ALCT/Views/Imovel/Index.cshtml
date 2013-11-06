@@ -44,6 +44,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Cidade.Descricao)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Planta.Caminho)
+        </th>
         <th></th>
     </tr>
 
@@ -83,6 +86,10 @@
             @Html.DisplayFor(modelItem => item.Cidade.Descricao)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Planta.Caminho)
+        </td>
+        <td>
+            @Html.ActionLink("Definir Paredes", "Paredes", new { id=item.ImovelId }) |
             @Html.ActionLink("Edit", "Edit", new { id=item.ImovelId }) |
             @Html.ActionLink("Details", "Details", new { id=item.ImovelId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ImovelId })

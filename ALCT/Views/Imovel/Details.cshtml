@@ -85,6 +85,13 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Cidade.Descricao)
     </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Planta.Caminho)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Planta.Caminho)
+    </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.ImovelId }) |
