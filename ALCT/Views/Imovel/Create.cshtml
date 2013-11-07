@@ -17,6 +17,8 @@
     <fieldset>
         <legend>ImovelModel</legend>
 
+        @Html.Partial("~/Views/Imovel/_Contato.cshtml", new ALCT.Models.ContatoModel())
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Descricao)
         </div>
@@ -134,9 +136,8 @@
                 var imovel = {
                     "ImovelId":"", "Descricao": "", "Valor": "", "Condominio": "", "IPTU": "", "AreaUtil": "",
                     "Vagas": "", "Dormitorios": "", "Suites": "", "Endereco": "", "Tipo": "", "CidadeID": "",
-                    "ImagemID": ""
+                    "ImagemID": "", "Contato": ""
                 };
-                imovel.ImovelId = $("#ImovelId").val();
                 imovel.Descricao = $("#Descricao").val();
                 imovel.Valor = $("#Valor").val();
                 imovel.Condominio = $("#Condominio").val();
@@ -149,6 +150,12 @@
                 imovel.Tipo = $("#Tipo").val();
                 imovel.CidadeID = $("#CidadeID").val();
                 imovel.ImagemID = imagem.ImagemId;
+
+                var contato = {
+                    "ContatoId": "", "Nome": ""
+                };
+                contato.Nome = $("#Nome").val();
+                imovel.Contato = contato;
 
                 $.ajax({
                     url: '/Imovel/Create',

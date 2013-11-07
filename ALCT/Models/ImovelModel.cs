@@ -33,6 +33,11 @@ namespace ALCT.Models
         public int? ImagemID { get; set; }
         public virtual ImagemModel Planta { get; set; }
 
+        [ForeignKey("Contato")]
+        [Column(Order = 4)]
+        public int? ContatoID { get; set; }
+        public virtual ContatoModel Contato { get; set; }
+
 
         public virtual List<ImagemModel> Fotos { get; set; }
         public virtual List<ParedeModel> Paredes { get; set; }

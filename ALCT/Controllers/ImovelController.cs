@@ -73,6 +73,8 @@ namespace ALCT.Controllers
         [HttpPost]
         public JsonResult Create(ImovelModel imovelmodel)
         {
+            imovelmodel.Contato = db.Contatos.Add(imovelmodel.Contato);
+                
             if (ModelState.IsValid)
             {
                 db.Imoveis.Add(imovelmodel);

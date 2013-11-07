@@ -21,5 +21,7 @@ namespace ALCT.Models
         public DbSet<ImovelModel> Imoveis { get; set; }
         public DbSet<ParedeModel> Paredes { get; set; }
         public DbSet<ImagemModel> ImagemModels { get; set; }
+        public DbSet<ContatoModel> Contatos { get; set; }
+        public DbSet<TelefoneModel> Telefones { get; set; }
     }
 }

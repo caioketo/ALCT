@@ -192,14 +192,20 @@
     <Compile Include="Migrations\201311061340228_AddImagem2.Designer.cs">
       <DependentUpon>201311061340228_AddImagem2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311071259279_addContato.cs" />
+    <Compile Include="Migrations\201311071259279_addContato.Designer.cs">
+      <DependentUpon>201311071259279_addContato.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ALCTContext.cs" />
     <Compile Include="Models\CidadeModel.cs" />
+    <Compile Include="Models\ContatoModel.cs" />
     <Compile Include="Models\EstadoModel.cs" />
     <Compile Include="Models\ImagemModel.cs" />
     <Compile Include="Models\ImovelModel.cs" />
     <Compile Include="Models\ParedeModel.cs" />
+    <Compile Include="Models\TelefoneModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\JsonNetResult.cs" />
   </ItemGroup>
@@ -345,6 +351,7 @@
     <Content Include="Views\Imagem\Edit.cshtml" />
     <Content Include="Views\Imagem\Delete.cshtml" />
     <Content Include="Views\Imovel\Paredes.cshtml" />
+    <Content Include="Views\Imovel\_Contato.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -367,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311061340228_AddImagem2.resx">
       <DependentUpon>201311061340228_AddImagem2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311071259279_addContato.resx">
+      <DependentUpon>201311071259279_addContato.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
